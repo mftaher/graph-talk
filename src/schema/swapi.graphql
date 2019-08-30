@@ -1,0 +1,115 @@
+type Query {
+  people(id: Int = 0): [Person]
+  planets(id: Int = 0): [Planet]
+  films(id: Int = 0): [Film]
+  species(id: Int = 0): [Species]
+  vehicles(id: Int = 0): [Vehicle]
+  starships(id: Int = 0): [Starship]
+}
+
+type Mutation {
+  addFilm(title: String!): Film
+}
+
+type Subscription {
+  filmAdded: Film
+}
+
+type Planet {
+  name: String
+  url: String
+  rotation_period: String
+  orbital_period: String
+  diameter: String
+  climate: String
+  gravity: String
+  terrain: String
+  surface_water: String
+  population: String
+  residents: [Person]
+  films: [Film]
+}
+
+type Person {
+  name: String
+  url: String
+  birth_year: String
+  eye_color: String
+  gender: String
+  skin_color: String
+  hair_color: String
+  height: String
+  homeworld: String
+  mass: String
+  films: [Film]
+  species: [Species]
+  starships: [Starship]
+  vehicles: [Vehicle]
+}
+
+type Film {
+  title: String
+  episode_id: Int
+  url: String
+  director: String
+  producer: String
+  release_date: String
+  opening_crawl: String
+  characters: [Person]
+  planets: [Planet]
+  species: [Species]
+  starships: [Starship]
+  vehicles: [Vehicle]
+}
+
+type Starship {
+  name: String
+  model: String
+  starship_class: String
+  url: String
+  MGLT: String
+  cargo_capacity: String
+  consumables: String
+  cost_in_credits: String
+  crew: String
+  hyperdrive_rating: String
+  length: String
+  manufacturer: String
+  max_atmosphering_speed: String
+  passengers: String
+  films: [Person]
+  pilots: [Person]
+}
+
+type Vehicle {
+  name: String
+  model: String
+  passengers: String
+  url: String
+  cargo_capacity: String
+  consumables: String
+  cost_in_credits: String
+  crew: String
+  length: String
+  manufacturer: String
+  max_atmosphering_speed: String
+  vehicle_class: String
+  pilots: [Person]
+  films: [Film]
+}
+
+type Species {
+  name: String
+  average_height: String
+  average_lifespan: String
+  classification: String
+  designation: String
+  eye_colors: String
+  hair_colors: String
+  homeworld: String
+  language: String
+  skin_colors: String
+  url: String
+  people: [Person]
+  films: [Film]
+}
