@@ -2,10 +2,30 @@
 // const { fileLoader } = require('merge-graphql-schemas')
 
 const swapi = require('./swapi')
+const LIKED = 'LIKED'
+let likes = 0
 
 const root = {
+  Subscription: {
+    liked: {
+      resolve: payload => {
+        // Manipulate and return the new value
+        return payload.liked
+      },
+      subscribe: (_, __, { pubsub }) => pubsub.asyncIterator([LIKED])
+    }
+  },
   Query: {
-    hello: (_, { name }) => `Hello ${name || 'World'}`
+    likes: (_, __, context) => {
+      return likes
+    }
+  },
+  Mutation: {
+    like(_, { points }, { pubsub }) {
+      pubsub.publish(LIKED, { liked: points })
+      likes += points
+      return points
+    }
   }
 }
 
