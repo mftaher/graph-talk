@@ -1,18 +1,10 @@
 type Query {
-  people(id: Int = 0): [Person]
-  planets(id: Int = 0): [Planet]
-  films(id: Int = 0): [Film]
-  species(id: Int = 0): [Species]
-  vehicles(id: Int = 0): [Vehicle]
-  starships(id: Int = 0): [Starship]
-}
-
-type Mutation {
-  addFilm(title: String!): Film
-}
-
-type Subscription {
-  filmAdded: Film
+  people(id: Int): [Person]
+  planets(id: Int): [Planet]
+  films(id: Int): [Film]
+  species(id: Int): [Species]
+  vehicles(id: Int): [Vehicle]
+  starships(id: Int): [Starship]
 }
 
 type Planet {
@@ -112,4 +104,12 @@ type Species {
   url: String
   people: [Person]
   films: [Film]
+}
+
+type Mutation {
+  addFilm(title: String!): Film
+}
+
+type Subscription {
+  filmAdded: Film
 }

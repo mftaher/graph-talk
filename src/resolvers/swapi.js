@@ -5,36 +5,22 @@ const FILM_ADDED = 'FILM_ADDED'
 const fetchResults = async (url, id) => {
   let results = []
   if (id) {
-    if (id > 0) {
-      url = `${url}${id}`
-    }
-    let response = await axios.get(url)
-    if (id > 0) {
-      results.push(response.data)
-    } else {
-      results = response.data.results
-    }
+    url = `${url}${id}`
+    results.push(await fetchByURL(url))
   } else {
-    const response = await axios.get(url)
-    results = response.data
+    const response = await fetchByURL(url)
+    results = response.results
   }
 
   return results
 }
 
+const fetchByURL = async url => {
+  const response = await axios.get(url)
+  return response.data
+}
+
 module.exports = {
-  Subscription: {
-    filmAdded: {
-      subscribe: (_, __, { pubsub }) => pubsub.asyncIterator([FILM_ADDED])
-    }
-  },
-  Mutation: {
-    addFilm(_, args, { pubsub }) {
-      pubsub.publish(FILM_ADDED, { filmAdded: args })
-      // return filmService.addFilm(args)
-      return { title: args.title }
-    }
-  },
   Query: {
     people: async (_, { id }) => {
       let url = `${baseURL}/people/`
@@ -72,101 +58,112 @@ module.exports = {
       return results
     }
   },
-
+  Subscription: {
+    filmAdded: {
+      subscribe: (_, __, { pubsub }) => pubsub.asyncIterator([FILM_ADDED])
+    }
+  },
+  Mutation: {
+    addFilm(_, args, { pubsub }) {
+      pubsub.publish(FILM_ADDED, { filmAdded: args })
+      // return filmService.addFilm(args)
+      return { title: args.title }
+    }
+  },
   Person: {
     films: async (obj, _) => {
       return obj.films.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     },
     species: async (obj, _) => {
       return obj.species.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     },
     starships: async (obj, _) => {
       return obj.starships.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     },
     vehicles: async (obj, _) => {
       return obj.vehicles.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     }
   },
   Planet: {
     films: async (obj, _) => {
       return obj.films.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     },
     residents: async (obj, _) => {
       return obj.residents.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     }
   },
   Film: {
     planets: async (obj, _) => {
       return obj.planets.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     },
     characters: async (obj, _) => {
       return obj.characters.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     },
     species: async (obj, _) => {
       return obj.species.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     },
     starships: async (obj, _) => {
       return obj.starships.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     },
     vehicles: async (obj, _) => {
       return obj.vehicles.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     }
   },
   Starship: {
     films: async (obj, _) => {
       return obj.films.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     },
     pilots: async (obj, _) => {
       return obj.pilots.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     }
   },
   Vehicle: {
     films: async (obj, _) => {
       return obj.films.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     },
     pilots: async (obj, _) => {
       return obj.pilots.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     }
   },
   Species: {
     films: async (obj, _) => {
       return obj.films.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     },
     people: async (obj, _) => {
       return obj.people.map(url => {
-        return fetchResults(url)
+        return fetchByURL(url)
       })
     }
   }
