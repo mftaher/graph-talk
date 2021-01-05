@@ -12,7 +12,7 @@
     "start": "node ./src/index.js"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "dotenv": "^8.1.0",
     "graphql-yoga": "^1.18.3",
     "merge-graphql-schemas": "^1.7.0"
