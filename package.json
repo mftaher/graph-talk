@@ -12,13 +12,13 @@
     "start": "node ./src/index.js"
   },
   "dependencies": {
-    "axios": "^0.19.0",
-    "dotenv": "^8.1.0",
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
     "graphql-yoga": "^1.18.3",
-    "merge-graphql-schemas": "^1.7.0"
+    "merge-graphql-schemas": "^1.7.8"
   },
   "devDependencies": {
-    "eslint": "^6.2.2",
-    "prettier": "^1.18.2"
+    "eslint": "^7.18.0",
+    "prettier": "^2.2.1"
   }
 }

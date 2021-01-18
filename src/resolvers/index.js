@@ -1,6 +1,7 @@
 // const path = require('path')
 // const { fileLoader } = require('merge-graphql-schemas')
 
+const github = require('./github')
 const swapi = require('./swapi')
 const LIKED = 'LIKED'
 let likes = 0
@@ -32,7 +33,7 @@ const root = {
 /* MANUAL APPROACH: Update this file manually with each resolver file */
 // import userResolvers from "./user.resolvers";
 // import welcomeResolvers from "./welcome.resolvers";
-const resolvers = [root, swapi]
+const resolvers = [root, swapi, github]
 
 /*  AUTOMATED APPROACH: Put your resolvers anywhere 
     with ".resolvers.[js/ts]" naming convention */
